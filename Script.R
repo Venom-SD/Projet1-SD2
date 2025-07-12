@@ -15,3 +15,20 @@ diamonds |>
        x = "Carat Weight",
        y = "Price in USD",
        color = "Cut Quality") 
+
+diamonds |> 
+  sample_n(size = 300) |>
+  group_by(cut) |> 
+  summarize(Count = n()) |> 
+  ggplot(mapping = aes(x = cut,
+                       y = Count)) +
+  geom_bar(stat = 'identity',
+           color = "black",
+           mapping = aes(fill = cut),
+           show.legend = FALSE) +
+  labs(title = "Diamonds Dataset",
+       subtitle = "Sample of 300 diamonds",
+       x = "Quality",
+       y = "Count") 
+
+
